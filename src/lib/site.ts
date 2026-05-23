@@ -15,7 +15,7 @@ export const SITE = {
     "https://www.google.com/maps/search/?api=1&query=Siruvani+Main+Road+Alandurai+Coimbatore+641101",
   areas: [
     "Coimbatore", "Erode", "Tiruppur", "Avinasi",
-    "Annur", "Palakkad–Pollachi Road",
+    "Annur", "Palakkad–Pollachi Road","Mettupalayam","Karamadai","Palladam"
   ],
 } as const;
 
