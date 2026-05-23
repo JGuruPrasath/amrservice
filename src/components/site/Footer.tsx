@@ -8,7 +8,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-lg bg-[var(--gradient-cta)] font-bold text-secondary-foreground">
+            <div className="grid h-9 w-9 place-items-center rounded-lg [background-image:var(--gradient-cta)] font-bold text-secondary-foreground">
               A
             </div>
             <div className="text-lg font-bold">AMR Service</div>

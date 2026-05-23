@@ -19,7 +19,7 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <>
-      <section className="bg-[var(--gradient-hero)] py-14 text-white md:py-20">
+      <section className="[background-image:var(--gradient-hero)] py-14 text-white md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">About AMR Service</h1>
           <p className="mt-3 max-w-2xl text-white/85">

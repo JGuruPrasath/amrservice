@@ -75,7 +75,7 @@ export function BookForm() {
       </div>
       <button
         type="submit"
-        className="mt-2 inline-flex items-center justify-center rounded-full bg-[var(--gradient-cta)] px-6 py-3.5 text-sm font-semibold text-secondary-foreground shadow-[var(--shadow-cta)] transition-transform hover:scale-[1.02]"
+        className="mt-2 inline-flex items-center justify-center rounded-full [background-image:var(--gradient-cta)] px-6 py-3.5 text-sm font-semibold text-secondary-foreground shadow-[var(--shadow-cta)] transition-transform hover:scale-[1.02]"
       >
         Book Service via WhatsApp
       </button>

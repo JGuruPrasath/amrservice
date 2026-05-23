@@ -16,7 +16,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2">
-          <div className="grid h-9 w-9 place-items-center rounded-lg bg-[var(--gradient-cta)] font-bold text-secondary-foreground shadow-[var(--shadow-cta)]">
+          <div className="grid h-9 w-9 place-items-center rounded-lg [background-image:var(--gradient-cta)] font-bold text-secondary-foreground shadow-[var(--shadow-cta)]">
             A
           </div>
           <div className="leading-tight">
@@ -44,7 +44,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href={`tel:${SITE.phone}`}
-            className="hidden items-center gap-2 rounded-full bg-[var(--gradient-cta)] px-4 py-2 text-sm font-semibold text-secondary-foreground shadow-[var(--shadow-cta)] transition-transform hover:scale-105 sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full [background-image:var(--gradient-cta)] px-4 py-2 text-sm font-semibold text-secondary-foreground shadow-[var(--shadow-cta)] transition-transform hover:scale-105 sm:inline-flex"
           >
             <Phone className="h-4 w-4" /> {SITE.phoneDisplay}
           </a>
@@ -75,7 +75,7 @@ export function Header() {
             ))}
             <a
               href={`tel:${SITE.phone}`}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--gradient-cta)] px-4 py-2.5 text-sm font-semibold text-secondary-foreground"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full [background-image:var(--gradient-cta)] px-4 py-2.5 text-sm font-semibold text-secondary-foreground"
             >
               <Phone className="h-4 w-4" /> Call {SITE.phoneDisplay}
             </a>

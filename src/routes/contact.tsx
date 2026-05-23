@@ -20,7 +20,7 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   return (
     <>
-      <section className="bg-[var(--gradient-hero)] py-14 text-white md:py-20">
+      <section className="[background-image:var(--gradient-hero)] py-14 text-white md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">Book Your Service</h1>
           <p className="mt-3 max-w-2xl text-white/85">
@@ -40,7 +40,7 @@ function Contact() {
                 { icon: Clock, label: "Hours", value: "Mon – Sun · 8:00 am – 9:00 pm" },
               ].map((c) => (
                 <li key={c.label} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[var(--gradient-cta)] text-secondary-foreground">
+                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl [background-image:var(--gradient-cta)] text-secondary-foreground">
                     <c.icon className="h-5 w-5" />
                   </div>
                   <div>

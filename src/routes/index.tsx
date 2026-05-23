@@ -23,7 +23,7 @@ function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-[var(--gradient-hero)] text-white">
+      <section className="relative overflow-hidden [background-image:var(--gradient-hero)] text-white">
         <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_20%_20%,white_0,transparent_40%),radial-gradient(circle_at_80%_60%,white_0,transparent_35%)]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
           <div>
@@ -83,7 +83,7 @@ function Home() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
             <Link key={s.slug} to="/services" hash={s.slug} className="group rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)] transition-all hover:-translate-y-1 hover:border-secondary">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-[var(--gradient-cta)] text-secondary-foreground shadow-[var(--shadow-cta)]">
+              <div className="grid h-12 w-12 place-items-center rounded-xl [background-image:var(--gradient-cta)] text-secondary-foreground shadow-[var(--shadow-cta)]">
                 <ServiceIcon name={s.icon as any} className="h-6 w-6" />
               </div>
               <h3 className="mt-4 text-lg font-bold text-foreground">{s.name}</h3>
