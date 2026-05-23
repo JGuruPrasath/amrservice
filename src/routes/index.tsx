@@ -124,22 +124,30 @@ function Home() {
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[
-            "Eg9Vc-c2yFY",
-            "Mt_a8wRcw5Q",
-            "9NJ8Y3a6dRk",
-          ].map((id) => (
-            <div key={id} className="aspect-video overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-card)]">
-              <iframe
-                className="h-full w-full"
-                src={`https://www.youtube.com/embed/${id}`}
-                title="AMR Service video"
-                loading="lazy"
-                allow="accelerometer; encrypted-media; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+            { title: "Washing Machine Repair", sub: "On-site drum & motor fix" },
+            { title: "Refrigerator Service", sub: "Gas refill & cooling repair" },
+            { title: "Split AC Deep Clean", sub: "Pro-grade chemical wash" },
+          ].map((v) => (
+            <a
+              key={v.title}
+              href={SITE.youtube}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative block aspect-video overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-card)] transition-all hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="absolute inset-0 [background-image:var(--gradient-hero)]" />
+              <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/10" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-white">
+                <div className="grid h-14 w-14 place-items-center rounded-full bg-white/95 text-red-600 shadow-xl transition-transform group-hover:scale-110">
+                  <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6 fill-current" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <h3 className="mt-3 text-base font-bold drop-shadow">{v.title}</h3>
+                <p className="text-xs text-white/85">{v.sub}</p>
+              </div>
+            </a>
           ))}
         </div>
+
         <div className="mt-8 text-center">
           <a href={SITE.youtube} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary hover:text-primary-foreground">
             Visit our YouTube channel →
