@@ -67,6 +67,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: SITE.name },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { title: "AMR Service" },
+      { property: "og:title", content: "AMR Service" },
+      { name: "twitter:title", content: "AMR Service" },
+      { name: "description", content: "AMR Service – Home Appliance  Service, Coimbatore.
+Fast service, experienced technicians, affordable pricing, and customer satisfaction guaranteed." },
+      { property: "og:description", content: "AMR Service – Home Appliance  Service, Coimbatore.
+Fast service, experienced technicians, affordable pricing, and customer satisfaction guaranteed." },
+      { name: "twitter:description", content: "AMR Service – Home Appliance  Service, Coimbatore.
+Fast service, experienced technicians, affordable pricing, and customer satisfaction guaranteed." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/48b4b9cf-6e06-435a-ba45-7ed7597e2964" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/48b4b9cf-6e06-435a-ba45-7ed7597e2964" },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
     scripts: [
