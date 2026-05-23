@@ -73,6 +73,24 @@ function Home() {
         </div>
       </section>
 
+      {/* STATS STRIP */}
+      <section className="border-b border-border bg-card">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-6 sm:grid-cols-4">
+          {[
+            { n: "2,000+", l: "Happy Homes" },
+            { n: "10+ yrs", l: "Experience" },
+            { n: "90-Day", l: "Warranty" },
+            { n: "Same-Day", l: "Service" },
+          ].map((s) => (
+            <div key={s.l} className="text-center">
+              <div className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-2xl font-extrabold text-transparent md:text-3xl">{s.n}</div>
+              <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+
       {/* SERVICES */}
       <section className="mx-auto max-w-7xl px-4 py-16 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
