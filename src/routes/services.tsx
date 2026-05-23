@@ -20,7 +20,7 @@ export const Route = createFileRoute("/services")({
 function ServicesPage() {
   return (
     <>
-      <section className="bg-[var(--gradient-hero)] py-14 text-white md:py-20">
+      <section className="[background-image:var(--gradient-hero)] py-14 text-white md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">Our Services</h1>
           <p className="mt-3 max-w-2xl text-white/85">
@@ -33,7 +33,7 @@ function ServicesPage() {
         <div className="space-y-12">
           {SERVICES.map((s, i) => (
             <article key={s.slug} id={s.slug} className="grid scroll-mt-24 items-center gap-8 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)] md:grid-cols-[auto,1fr,auto] md:p-8">
-              <div className="grid h-20 w-20 place-items-center rounded-2xl bg-[var(--gradient-cta)] text-secondary-foreground shadow-[var(--shadow-cta)]">
+              <div className="grid h-20 w-20 place-items-center rounded-2xl [background-image:var(--gradient-cta)] text-secondary-foreground shadow-[var(--shadow-cta)]">
                 <ServiceIcon name={s.icon as any} className="h-10 w-10" />
               </div>
               <div>
@@ -49,7 +49,7 @@ function ServicesPage() {
                   ))}
                 </ul>
               </div>
-              <Link to="/contact" className="self-start rounded-full bg-[var(--gradient-cta)] px-5 py-2.5 text-sm font-semibold text-secondary-foreground shadow-[var(--shadow-cta)]">
+              <Link to="/contact" className="self-start rounded-full [background-image:var(--gradient-cta)] px-5 py-2.5 text-sm font-semibold text-secondary-foreground shadow-[var(--shadow-cta)]">
                 Book now
               </Link>
             </article>

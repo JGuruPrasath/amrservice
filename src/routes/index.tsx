@@ -23,7 +23,7 @@ function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-[var(--gradient-hero)] text-white">
+      <section className="relative overflow-hidden [background-image:var(--gradient-hero)] text-white">
         <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_20%_20%,white_0,transparent_40%),radial-gradient(circle_at_80%_60%,white_0,transparent_35%)]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
           <div>
@@ -73,6 +73,24 @@ function Home() {
         </div>
       </section>
 
+      {/* STATS STRIP */}
+      <section className="border-b border-border bg-card">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-6 sm:grid-cols-4">
+          {[
+            { n: "2,000+", l: "Happy Homes" },
+            { n: "10+ yrs", l: "Experience" },
+            { n: "90-Day", l: "Warranty" },
+            { n: "Same-Day", l: "Service" },
+          ].map((s) => (
+            <div key={s.l} className="text-center">
+              <div className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-2xl font-extrabold text-transparent md:text-3xl">{s.n}</div>
+              <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+
       {/* SERVICES */}
       <section className="mx-auto max-w-7xl px-4 py-16 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
@@ -83,7 +101,7 @@ function Home() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
             <Link key={s.slug} to="/services" hash={s.slug} className="group rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)] transition-all hover:-translate-y-1 hover:border-secondary">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-[var(--gradient-cta)] text-secondary-foreground shadow-[var(--shadow-cta)]">
+              <div className="grid h-12 w-12 place-items-center rounded-xl [background-image:var(--gradient-cta)] text-secondary-foreground shadow-[var(--shadow-cta)]">
                 <ServiceIcon name={s.icon as any} className="h-6 w-6" />
               </div>
               <h3 className="mt-4 text-lg font-bold text-foreground">{s.name}</h3>
@@ -124,22 +142,30 @@ function Home() {
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[
-            "Eg9Vc-c2yFY",
-            "Mt_a8wRcw5Q",
-            "9NJ8Y3a6dRk",
-          ].map((id) => (
-            <div key={id} className="aspect-video overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-card)]">
-              <iframe
-                className="h-full w-full"
-                src={`https://www.youtube.com/embed/${id}`}
-                title="AMR Service video"
-                loading="lazy"
-                allow="accelerometer; encrypted-media; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+            { title: "Washing Machine Repair", sub: "On-site drum & motor fix" },
+            { title: "Refrigerator Service", sub: "Gas refill & cooling repair" },
+            { title: "Split AC Deep Clean", sub: "Pro-grade chemical wash" },
+          ].map((v) => (
+            <a
+              key={v.title}
+              href={SITE.youtube}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative block aspect-video overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-card)] transition-all hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="absolute inset-0 [background-image:var(--gradient-hero)]" />
+              <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/10" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-white">
+                <div className="grid h-14 w-14 place-items-center rounded-full bg-white/95 text-red-600 shadow-xl transition-transform group-hover:scale-110">
+                  <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6 fill-current" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <h3 className="mt-3 text-base font-bold drop-shadow">{v.title}</h3>
+                <p className="text-xs text-white/85">{v.sub}</p>
+              </div>
+            </a>
           ))}
         </div>
+
         <div className="mt-8 text-center">
           <a href={SITE.youtube} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary hover:text-primary-foreground">
             Visit our YouTube channel →
