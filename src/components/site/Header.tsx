@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { SITE } from "@/lib/site";
+import amrLogo from "@/assets/AMR Logo.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -16,9 +17,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2">
-          <div className="grid h-9 w-9 place-items-center rounded-lg [background-image:var(--gradient-cta)] font-bold text-secondary-foreground shadow-[var(--shadow-cta)]">
-            A
-          </div>
+          <img src={amrLogo} alt="AMR Logo" className="h-9 w-9 rounded-lg object-cover" />
           <div className="leading-tight">
             <div className="text-base font-bold text-foreground">AMR Service</div>
             <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
