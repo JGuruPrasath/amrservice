@@ -11,9 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiTestimonialsRouteImport } from './routes/api/testimonials'
+import { Route as AdminTestimonialsRouteImport } from './routes/admin/testimonials'
+import { Route as ApiTestimonialsTypeRouteImport } from './routes/api/testimonials.$type'
+import { Route as ApiTestimonialsIdActionRouteImport } from './routes/api/testimonials.$id.$action'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -23,6 +28,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -40,43 +50,112 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiTestimonialsRoute = ApiTestimonialsRouteImport.update({
+  id: '/api/testimonials',
+  path: '/api/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminTestimonialsRoute = AdminTestimonialsRouteImport.update({
+  id: '/admin/testimonials',
+  path: '/admin/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTestimonialsTypeRoute = ApiTestimonialsTypeRouteImport.update({
+  id: '/$type',
+  path: '/$type',
+  getParentRoute: () => ApiTestimonialsRoute,
+} as any)
+const ApiTestimonialsIdActionRoute = ApiTestimonialsIdActionRouteImport.update({
+  id: '/$id/$action',
+  path: '/$id/$action',
+  getParentRoute: () => ApiTestimonialsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/api/testimonials': typeof ApiTestimonialsRouteWithChildren
+  '/api/testimonials/$type': typeof ApiTestimonialsTypeRoute
+  '/api/testimonials/$id/$action': typeof ApiTestimonialsIdActionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/api/testimonials': typeof ApiTestimonialsRouteWithChildren
+  '/api/testimonials/$type': typeof ApiTestimonialsTypeRoute
+  '/api/testimonials/$id/$action': typeof ApiTestimonialsIdActionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/api/testimonials': typeof ApiTestimonialsRouteWithChildren
+  '/api/testimonials/$type': typeof ApiTestimonialsTypeRoute
+  '/api/testimonials/$id/$action': typeof ApiTestimonialsIdActionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/services' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/feedback'
+    | '/services'
+    | '/sitemap.xml'
+    | '/admin/testimonials'
+    | '/api/testimonials'
+    | '/api/testimonials/$type'
+    | '/api/testimonials/$id/$action'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/services' | '/sitemap.xml'
-  id: '__root__' | '/' | '/about' | '/contact' | '/services' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/feedback'
+    | '/services'
+    | '/sitemap.xml'
+    | '/admin/testimonials'
+    | '/api/testimonials'
+    | '/api/testimonials/$type'
+    | '/api/testimonials/$id/$action'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/feedback'
+    | '/services'
+    | '/sitemap.xml'
+    | '/admin/testimonials'
+    | '/api/testimonials'
+    | '/api/testimonials/$type'
+    | '/api/testimonials/$id/$action'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  FeedbackRoute: typeof FeedbackRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  AdminTestimonialsRoute: typeof AdminTestimonialsRoute
+  ApiTestimonialsRoute: typeof ApiTestimonialsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -93,6 +172,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -116,16 +202,71 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/testimonials': {
+      id: '/api/testimonials'
+      path: '/api/testimonials'
+      fullPath: '/api/testimonials'
+      preLoaderRoute: typeof ApiTestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/testimonials': {
+      id: '/admin/testimonials'
+      path: '/admin/testimonials'
+      fullPath: '/admin/testimonials'
+      preLoaderRoute: typeof AdminTestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/testimonials/$type': {
+      id: '/api/testimonials/$type'
+      path: '/$type'
+      fullPath: '/api/testimonials/$type'
+      preLoaderRoute: typeof ApiTestimonialsTypeRouteImport
+      parentRoute: typeof ApiTestimonialsRoute
+    }
+    '/api/testimonials/$id/$action': {
+      id: '/api/testimonials/$id/$action'
+      path: '/$id/$action'
+      fullPath: '/api/testimonials/$id/$action'
+      preLoaderRoute: typeof ApiTestimonialsIdActionRouteImport
+      parentRoute: typeof ApiTestimonialsRoute
+    }
   }
 }
+
+interface ApiTestimonialsRouteChildren {
+  ApiTestimonialsTypeRoute: typeof ApiTestimonialsTypeRoute
+  ApiTestimonialsIdActionRoute: typeof ApiTestimonialsIdActionRoute
+}
+
+const ApiTestimonialsRouteChildren: ApiTestimonialsRouteChildren = {
+  ApiTestimonialsTypeRoute: ApiTestimonialsTypeRoute,
+  ApiTestimonialsIdActionRoute: ApiTestimonialsIdActionRoute,
+}
+
+const ApiTestimonialsRouteWithChildren = ApiTestimonialsRoute._addFileChildren(
+  ApiTestimonialsRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  FeedbackRoute: FeedbackRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  AdminTestimonialsRoute: AdminTestimonialsRoute,
+  ApiTestimonialsRoute: ApiTestimonialsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

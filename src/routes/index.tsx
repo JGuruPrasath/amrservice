@@ -1,9 +1,23 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
 import { CheckCircle2, Clock, ShieldCheck, Star, Wrench, MapPin, Phone } from "lucide-react";
 import heroImg from "@/assets/hero-technician.jpg";
 import { SITE, SERVICES } from "@/lib/site";
 import { ServiceIcon } from "@/components/site/ServiceIcon";
 import { BookForm } from "@/components/site/BookForm";
+
+interface Testimonial {
+  id: number;
+  name: string;
+  location: string;
+  rating: number;
+  comment: string;
+}
+
+const defaultTestimonials: Testimonial[] = [
+  { id: 1, name: "Priya R.", location: "RS Puram", rating: 5, comment: "Booked at 10am, technician arrived by 1pm. Fridge cooling fixed same day. Very professional!" },
+  { id: 2, name: "Karthik S.", location: "Vadavalli", rating: 5, comment: "Excellent AC service. Genuine spares, fair pricing, and a 90-day warranty. Highly recommended." },
+  { id: 3, name: "Lakshmi M.", location: "Alandurai", rating: 5, comment: "Washing machine drum issue solved in one visit. Polite team and reasonable charges. Will call again." },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -16,10 +30,23 @@ export const Route = createFileRoute("/")({
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
+  loader: async () => {
+    try {
+      const { getApprovedTestimonials } = await import(/* @vite-ignore */ "@/lib/db.server");
+      const testimonials = getApprovedTestimonials();
+      return {
+        testimonials: testimonials.length > 0 ? testimonials : defaultTestimonials,
+      };
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+      return { testimonials: defaultTestimonials };
+    }
+  },
   component: Home,
 });
 
 function Home() {
+  const { testimonials } = useLoaderData({ from: "/" });
   return (
     <>
       {/* HERO */}
@@ -181,23 +208,24 @@ function Home() {
             <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Loved by Coimbatore families</h2>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              { n: "Priya R.", a: "RS Puram", t: "Booked at 10am, technician arrived by 1pm. Fridge cooling fixed same day. Very professional!" },
-              { n: "Karthik S.", a: "Vadavalli", t: "Excellent AC service. Genuine spares, fair pricing, and a 90-day warranty. Highly recommended." },
-              { n: "Lakshmi M.", a: "Alandurai", t: "Washing machine drum issue solved in one visit. Polite team and reasonable charges. Will call again." },
-            ].map((r) => (
-              <figure key={r.n} className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
+            {testimonials.map((r) => (
+              <figure key={r.id} className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
                 <div className="flex">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-secondary text-secondary" />
+                    <Star key={i} className={`h-4 w-4 ${i < r.rating ? "fill-secondary text-secondary" : "text-border"}`} />
                   ))}
                 </div>
-                <blockquote className="mt-3 text-sm leading-relaxed text-foreground">“{r.t}”</blockquote>
+                <blockquote className="mt-3 text-sm leading-relaxed text-foreground">"{r.comment}"</blockquote>
                 <figcaption className="mt-4 text-sm font-semibold text-foreground">
-                  {r.n} <span className="font-normal text-muted-foreground">· {r.a}</span>
+                  {r.name} <span className="font-normal text-muted-foreground">· {r.location}</span>
                 </figcaption>
               </figure>
             ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link to="/feedback" className="inline-flex items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary hover:text-primary-foreground">
+              Share Your Feedback →
+            </Link>
           </div>
         </div>
       </section>
